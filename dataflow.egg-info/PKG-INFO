@@ -1,3 +1,5 @@
 Metadata-Version: 2.1
 Name: dataflow
-Version: 0.1
+Version: 0.1.0
+Provides-Extra: data_processing
+License-File: LICENCE.md
