@@ -1,6 +1,7 @@
 LICENCE.md
 MANIFEST.in
 README.md
+pyproject.toml
 setup.py
 dataflow/__init__.py
 dataflow/parallel_processor.py
@@ -14,6 +15,7 @@ dataflow.egg-info/requires.txt
 dataflow.egg-info/top_level.txt
 tests/__init__.py
 tests/test_data_pipeline.py
+tests/test_dataflow.py
 tests/test_error_handling.py
 tests/test_parallel_processor.py
 tests/test_pipeline.py
