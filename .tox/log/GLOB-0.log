@@ -3,12 +3,10 @@ cwd: C:\Users\pytho\Desktop\DataFlow
 cmd: 'C:\Users\pytho\AppData\Local\Programs\Python\Python311\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
 running sdist
 running egg_info
-creating dataDisk.egg-info
 writing dataDisk.egg-info\PKG-INFO
 writing dependency_links to dataDisk.egg-info\dependency_links.txt
 writing requirements to dataDisk.egg-info\requires.txt
 writing top-level names to dataDisk.egg-info\top_level.txt
-writing manifest file 'dataDisk.egg-info\SOURCES.txt'
 reading manifest file 'dataDisk.egg-info\SOURCES.txt'
 reading manifest template 'MANIFEST.in'
 warning: no previously-included files found matching '__pycache__'
