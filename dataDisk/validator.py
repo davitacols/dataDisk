@@ -7,4 +7,6 @@ class Validator:
         if self.validate_func(data):
             return data
         else:
-            raise ValueError("Data validation failed.")
+            raise ValueError(
+                "Data validation failed."
+            )
