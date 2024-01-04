@@ -1,2 +1,3 @@
 include README.md
 exclude __pycache__
+exclude .pypirc
