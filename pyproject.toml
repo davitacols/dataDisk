@@ -3,9 +3,9 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.poetry]
-name = "DATAFLOW"
+name = "dataDisk"
 version = "0.1.0"
-description = "DataFlow is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution."
+description = "dataDisk is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution."
 authors = ["David Ansa <davitacols@gmail.com>"]
 
 [tool.poetry.dependencies]

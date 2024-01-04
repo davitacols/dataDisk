@@ -1,5 +1,5 @@
-DataFlow
-DataFlow is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution.
+dataDisk
+dataDisk is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution.
 
 Key Components
 1. DataPipeline
