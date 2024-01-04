@@ -1,5 +1,6 @@
 # tests/test_dataflow.py
-from dataflow import DataPipeline, Transformation, Validator, ParallelProcessor
+from . import DataPipeline, Transformation, Validator, ParallelProcessor # noqa
+
 
 def test_pipeline_execution_order():
     pipeline = DataPipeline()
