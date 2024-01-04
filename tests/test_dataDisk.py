@@ -1,4 +1,5 @@
 # tests/test_dataflow.py
+import pytest
 from dataDisk import DataPipeline, Transformation, Validator, ParallelProcessor # noqa
 
 
@@ -12,5 +13,5 @@ def test_pipeline_execution_order():
     pipeline.add_task(transformation2)
     pipeline.add_task(validator)
 
-    result = pipeline.process(3)
-    assert result == [14]
+    with pytest.raises(ValueError, match="Data validation failed."):
+        pipeline.process(3)

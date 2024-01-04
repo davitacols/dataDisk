@@ -1,0 +1,6 @@
+concurrent.futures
+multiprocessing
+
+[data_processing]
+numpy
+pandas

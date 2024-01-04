@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: dataDisk
+Version: 0.1.0
+Home-page: https://github.com/davitacols/DataFlow
+Provides-Extra: data_processing
+License-File: LICENCE.md
