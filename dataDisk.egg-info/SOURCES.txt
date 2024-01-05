@@ -8,6 +8,7 @@ dataDisk/parallel_processor.py
 dataDisk/pipeline.py
 dataDisk/transformation.py
 dataDisk/validator.py
+dataDisk/visual_builder.py
 dataDisk.egg-info/PKG-INFO
 dataDisk.egg-info/SOURCES.txt
 dataDisk.egg-info/dependency_links.txt
@@ -21,3 +22,4 @@ tests/test_parallel_processor.py
 tests/test_pipeline.py
 tests/test_transformation.py
 tests/test_validator.py
+tests/test_visual_biuilder.py

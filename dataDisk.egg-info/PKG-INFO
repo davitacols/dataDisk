@@ -1,6 +1,10 @@
 Metadata-Version: 2.1
 Name: dataDisk
-Version: 0.1.0
+Version: 1.1.0
 Home-page: https://github.com/davitacols/DataFlow
-Provides-Extra: data_processing
 License-File: LICENCE.md
+Requires-Dist: concurrent.futures
+Requires-Dist: multiprocessing
+Provides-Extra: data-processing
+Requires-Dist: numpy; extra == "data-processing"
+Requires-Dist: pandas; extra == "data-processing"
