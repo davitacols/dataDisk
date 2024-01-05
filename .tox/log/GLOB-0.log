@@ -1,5 +1,5 @@
 action: GLOB, msg: packaging
-cwd: C:\Users\pytho\Desktop\DataFlow
+cwd: C:\Users\pytho\Desktop\dataDisk
 cmd: 'C:\Users\pytho\AppData\Local\Programs\Python\Python311\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
 running sdist
 running egg_info
@@ -10,66 +10,67 @@ writing top-level names to dataDisk.egg-info\top_level.txt
 reading manifest file 'dataDisk.egg-info\SOURCES.txt'
 reading manifest template 'MANIFEST.in'
 warning: no previously-included files found matching '__pycache__'
+warning: no previously-included files found matching '.pypirc'
 adding license file 'LICENCE.md'
 writing manifest file 'dataDisk.egg-info\SOURCES.txt'
 running check
-creating dataDisk-0.1.0
-creating dataDisk-0.1.0\dataDisk
-creating dataDisk-0.1.0\dataDisk.egg-info
-creating dataDisk-0.1.0\tests
-copying files to dataDisk-0.1.0...
-copying LICENCE.md -> dataDisk-0.1.0
-copying MANIFEST.in -> dataDisk-0.1.0
-copying README.md -> dataDisk-0.1.0
-copying pyproject.toml -> dataDisk-0.1.0
-copying setup.py -> dataDisk-0.1.0
-copying dataDisk\__init__.py -> dataDisk-0.1.0\dataDisk
-copying dataDisk\parallel_processor.py -> dataDisk-0.1.0\dataDisk
-copying dataDisk\pipeline.py -> dataDisk-0.1.0\dataDisk
-copying dataDisk\transformation.py -> dataDisk-0.1.0\dataDisk
-copying dataDisk\validator.py -> dataDisk-0.1.0\dataDisk
-copying dataDisk.egg-info\PKG-INFO -> dataDisk-0.1.0\dataDisk.egg-info
-copying dataDisk.egg-info\SOURCES.txt -> dataDisk-0.1.0\dataDisk.egg-info
-copying dataDisk.egg-info\dependency_links.txt -> dataDisk-0.1.0\dataDisk.egg-info
-copying dataDisk.egg-info\requires.txt -> dataDisk-0.1.0\dataDisk.egg-info
-copying dataDisk.egg-info\top_level.txt -> dataDisk-0.1.0\dataDisk.egg-info
-copying tests\__init__.py -> dataDisk-0.1.0\tests
-copying tests\test_dataDisk.py -> dataDisk-0.1.0\tests
-copying tests\test_data_pipeline.py -> dataDisk-0.1.0\tests
-copying tests\test_error_handling.py -> dataDisk-0.1.0\tests
-copying tests\test_parallel_processor.py -> dataDisk-0.1.0\tests
-copying tests\test_pipeline.py -> dataDisk-0.1.0\tests
-copying tests\test_transformation.py -> dataDisk-0.1.0\tests
-copying tests\test_validator.py -> dataDisk-0.1.0\tests
-Writing dataDisk-0.1.0\setup.cfg
-creating '.tox\dist\dataDisk-0.1.0.zip' and adding 'dataDisk-0.1.0' to it
-adding 'dataDisk-0.1.0'
-adding 'dataDisk-0.1.0\dataDisk'
-adding 'dataDisk-0.1.0\dataDisk.egg-info'
-adding 'dataDisk-0.1.0\tests'
-adding 'dataDisk-0.1.0\LICENCE.md'
-adding 'dataDisk-0.1.0\MANIFEST.in'
-adding 'dataDisk-0.1.0\PKG-INFO'
-adding 'dataDisk-0.1.0\pyproject.toml'
-adding 'dataDisk-0.1.0\README.md'
-adding 'dataDisk-0.1.0\setup.cfg'
-adding 'dataDisk-0.1.0\setup.py'
-adding 'dataDisk-0.1.0\dataDisk\parallel_processor.py'
-adding 'dataDisk-0.1.0\dataDisk\pipeline.py'
-adding 'dataDisk-0.1.0\dataDisk\transformation.py'
-adding 'dataDisk-0.1.0\dataDisk\validator.py'
-adding 'dataDisk-0.1.0\dataDisk\__init__.py'
-adding 'dataDisk-0.1.0\dataDisk.egg-info\dependency_links.txt'
-adding 'dataDisk-0.1.0\dataDisk.egg-info\PKG-INFO'
-adding 'dataDisk-0.1.0\dataDisk.egg-info\requires.txt'
-adding 'dataDisk-0.1.0\dataDisk.egg-info\SOURCES.txt'
-adding 'dataDisk-0.1.0\dataDisk.egg-info\top_level.txt'
-adding 'dataDisk-0.1.0\tests\test_dataDisk.py'
-adding 'dataDisk-0.1.0\tests\test_data_pipeline.py'
-adding 'dataDisk-0.1.0\tests\test_error_handling.py'
-adding 'dataDisk-0.1.0\tests\test_parallel_processor.py'
-adding 'dataDisk-0.1.0\tests\test_pipeline.py'
-adding 'dataDisk-0.1.0\tests\test_transformation.py'
-adding 'dataDisk-0.1.0\tests\test_validator.py'
-adding 'dataDisk-0.1.0\tests\__init__.py'
-removing 'dataDisk-0.1.0' (and everything under it)
+creating dataDisk-1.1.0
+creating dataDisk-1.1.0\dataDisk
+creating dataDisk-1.1.0\dataDisk.egg-info
+creating dataDisk-1.1.0\tests
+copying files to dataDisk-1.1.0...
+copying LICENCE.md -> dataDisk-1.1.0
+copying MANIFEST.in -> dataDisk-1.1.0
+copying README.md -> dataDisk-1.1.0
+copying pyproject.toml -> dataDisk-1.1.0
+copying setup.py -> dataDisk-1.1.0
+copying dataDisk\__init__.py -> dataDisk-1.1.0\dataDisk
+copying dataDisk\parallel_processor.py -> dataDisk-1.1.0\dataDisk
+copying dataDisk\pipeline.py -> dataDisk-1.1.0\dataDisk
+copying dataDisk\transformation.py -> dataDisk-1.1.0\dataDisk
+copying dataDisk\validator.py -> dataDisk-1.1.0\dataDisk
+copying dataDisk.egg-info\PKG-INFO -> dataDisk-1.1.0\dataDisk.egg-info
+copying dataDisk.egg-info\SOURCES.txt -> dataDisk-1.1.0\dataDisk.egg-info
+copying dataDisk.egg-info\dependency_links.txt -> dataDisk-1.1.0\dataDisk.egg-info
+copying dataDisk.egg-info\requires.txt -> dataDisk-1.1.0\dataDisk.egg-info
+copying dataDisk.egg-info\top_level.txt -> dataDisk-1.1.0\dataDisk.egg-info
+copying tests\__init__.py -> dataDisk-1.1.0\tests
+copying tests\test_dataDisk.py -> dataDisk-1.1.0\tests
+copying tests\test_data_pipeline.py -> dataDisk-1.1.0\tests
+copying tests\test_error_handling.py -> dataDisk-1.1.0\tests
+copying tests\test_parallel_processor.py -> dataDisk-1.1.0\tests
+copying tests\test_pipeline.py -> dataDisk-1.1.0\tests
+copying tests\test_transformation.py -> dataDisk-1.1.0\tests
+copying tests\test_validator.py -> dataDisk-1.1.0\tests
+Writing dataDisk-1.1.0\setup.cfg
+creating '.tox\dist\dataDisk-1.1.0.zip' and adding 'dataDisk-1.1.0' to it
+adding 'dataDisk-1.1.0'
+adding 'dataDisk-1.1.0\dataDisk'
+adding 'dataDisk-1.1.0\dataDisk.egg-info'
+adding 'dataDisk-1.1.0\tests'
+adding 'dataDisk-1.1.0\LICENCE.md'
+adding 'dataDisk-1.1.0\MANIFEST.in'
+adding 'dataDisk-1.1.0\PKG-INFO'
+adding 'dataDisk-1.1.0\pyproject.toml'
+adding 'dataDisk-1.1.0\README.md'
+adding 'dataDisk-1.1.0\setup.cfg'
+adding 'dataDisk-1.1.0\setup.py'
+adding 'dataDisk-1.1.0\dataDisk\parallel_processor.py'
+adding 'dataDisk-1.1.0\dataDisk\pipeline.py'
+adding 'dataDisk-1.1.0\dataDisk\transformation.py'
+adding 'dataDisk-1.1.0\dataDisk\validator.py'
+adding 'dataDisk-1.1.0\dataDisk\__init__.py'
+adding 'dataDisk-1.1.0\dataDisk.egg-info\dependency_links.txt'
+adding 'dataDisk-1.1.0\dataDisk.egg-info\PKG-INFO'
+adding 'dataDisk-1.1.0\dataDisk.egg-info\requires.txt'
+adding 'dataDisk-1.1.0\dataDisk.egg-info\SOURCES.txt'
+adding 'dataDisk-1.1.0\dataDisk.egg-info\top_level.txt'
+adding 'dataDisk-1.1.0\tests\test_dataDisk.py'
+adding 'dataDisk-1.1.0\tests\test_data_pipeline.py'
+adding 'dataDisk-1.1.0\tests\test_error_handling.py'
+adding 'dataDisk-1.1.0\tests\test_parallel_processor.py'
+adding 'dataDisk-1.1.0\tests\test_pipeline.py'
+adding 'dataDisk-1.1.0\tests\test_transformation.py'
+adding 'dataDisk-1.1.0\tests\test_validator.py'
+adding 'dataDisk-1.1.0\tests\__init__.py'
+removing 'dataDisk-1.1.0' (and everything under it)
