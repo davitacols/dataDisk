@@ -40,6 +40,15 @@ dataDisk is a Python package designed to simplify the creation and execution of 
     
     validator = Validator(is_even)
 
+### Also
+
+      # Register a custom transformation
+      Transformation.register_custom_transformation('custom_multiply_by_3', lambda x: x * 3)
+      
+      # Register a custom validator
+      Validator.register_custom_validator('custom_is_positive', lambda x: x > 0)
+
+
 4. **ParallelProcessor**
 
     `ParallelProcessor` enhances performance by allowing the execution of pipeline tasks in parallel. It utilizes Python's `concurrent.futures` module to efficiently process data concurrently, taking advantage of multi-core systems.
