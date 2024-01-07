@@ -1,5 +1,6 @@
-# dataflow/parallel_processor.py
+# dataDisk/parallel_processor.py
 from concurrent.futures import ProcessPoolExecutor
+import logging
 
 
 class ParallelProcessor:
@@ -12,7 +13,7 @@ class ParallelProcessor:
             results = [
                 executor.submit(task.execute, input_data)
                 for task in pipeline.tasks
-                ]
+            ]
 
         # Gathering results from the completed tasks
         processed_data = []
@@ -20,7 +21,9 @@ class ParallelProcessor:
             try:
                 processed_data.append(result.result())
             except Exception as e:
-                # Handle exceptions during task execution
+                # Log the exception and append
+                # an error message to processed_data
+                logging.error(f"Error during processing: {str(e)}")
                 processed_data.append(f"Error: {e}")
 
         return processed_data
