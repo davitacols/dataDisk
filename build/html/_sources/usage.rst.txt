@@ -96,3 +96,57 @@ In this scenario:
 The `double_purchase_amount` transformation doubles the `purchase_amount` for each customer.
 The `categorize_high_value_purchases` transformation updates the `product_category` to 'High Value' for purchases over $100.
 The validator ensures that the `purchase_amount` is positive.
+
+Customer Age Transformation
+---------------------------
+
+.. code-block:: python
+
+    from dataDisk import DataPipeline, Transformation
+
+    # Define the transformation to calculate customer age based on birth year
+    def calculate_customer_age(data):
+        current_year = 2024  # Replace with the current year
+        birth_year = data.get('birth_year', 0)
+        data['customer_age'] = current_year - birth_year
+        return data
+
+    # Create a data pipeline
+    pipeline_age = DataPipeline()
+
+    # Add the age calculation task to the pipeline
+    transformation_age = Transformation(calculate_customer_age)
+    pipeline_age.add_task(transformation_age)
+
+    # Process data through the pipeline
+    customer_data = {'customer_id': 1, 'birth_year': 1990}
+    result_age = pipeline_age.process(customer_data)
+    print("Customer Age Data:", result_age)
+
+Category Validator
+------------------
+
+.. code-block:: python
+    
+    from dataDisk import DataPipeline, Validator
+
+    # Define the validator to check if the product category is valid
+    def is_valid_category(data):
+        valid_categories = ['Electronics', 'Clothing', 'Accessories']
+        category = data.get('product_category', '')
+        return category in valid_categories
+
+    # Create a data pipeline
+    pipeline_category = DataPipeline()
+
+    # Add the category validation task to the pipeline
+    validator_category = Validator(is_valid_category)
+    pipeline_category.add_task(validator_category)
+
+    # Process data through the pipeline
+    product_data = {'product_id': 101, 'product_category': 'Electronics'}
+    try:
+        result_category = pipeline_category.process(product_data)
+        print("Valid Category Data:", result_category)
+    except ValueError as e:
+        print(f"Error: {e}")

@@ -8,10 +8,16 @@ Welcome to dataDisk's documentation!
 .. toctree::
    :maxdepth: 2
 
+
+   readme
+   introduction
+   installation
    usage
+   examples
+   customer_data_example
+   product_categorization_example
    contributing
    license
-   readme
 
 Indices and tables
 ==================
