@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'dataDisk'
-copyright = '2024, David Ansa'
+copyright = '2024, dataDisk'
 author = 'David Ansa'
 
 # The full version, including alpha/beta/rc tags
@@ -56,11 +56,11 @@ html_logo = os.path.abspath('../logo/data.png')
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.
-html_theme_options = {
-    "launch_buttons": {
-        "thebe": True,
-    },
-}
+# html_theme_options = {
+#     "launch_buttons": {
+#        "thebe": True,
+#    },
+# }
 
 # Custom CSS (uncomment to activate)
 # html_css_files = ['custom.css']
