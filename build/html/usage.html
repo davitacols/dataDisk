@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; dataDisk 03 jan 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=9c57a8ee"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to DataDisk" href="contributing.html" />
+    <link rel="prev" title="Welcome to dataDisk’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            dataDisk
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-datapipeline">Creating a DataPipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-world-data-scenario">Real-world Data Scenario</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to DataDisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#reporting-issues">Reporting Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#code-style">Code Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#collaboration-and-support">Collaboration and Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MIT License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">dataDisk</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dataDisk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>Before using <cite>dataDisk</cite>, make sure you have it installed. You can install it using <cite>pip</cite>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>dataDisk
+</pre></div>
+</div>
+</section>
+<section id="creating-a-datapipeline">
+<h2>Creating a DataPipeline<a class="headerlink" href="#creating-a-datapipeline" title="Link to this heading"></a></h2>
+<p>To get started with <cite>dataDisk</cite>, you’ll typically create a <cite>DataPipeline</cite> to define a sequence of data processing tasks. Each task can be a transformation or a validation.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataDisk</span> <span class="kn">import</span> <span class="n">DataPipeline</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">,</span> <span class="n">Validator</span>
+
+<span class="c1"># Define custom transformation functions</span>
+<span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># Define custom validation function</span>
+<span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Create a DataPipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DataPipeline</span><span class="p">()</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">Transformation</span><span class="p">(</span><span class="n">double</span><span class="p">))</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">Transformation</span><span class="p">(</span><span class="n">square</span><span class="p">))</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">Validator</span><span class="p">(</span><span class="n">is_even</span><span class="p">))</span>
+
+<span class="c1"># Process data through the pipeline</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="real-world-data-scenario">
+<h2>Real-world Data Scenario<a class="headerlink" href="#real-world-data-scenario" title="Link to this heading"></a></h2>
+<p>Let’s consider a real-world data scenario where you might use the <cite>dataDisk</cite> package. Imagine you are working with a dataset containing information about customers in an e-commerce platform. The dataset has fields like <cite>customer_id</cite>, <cite>purchase_amount</cite>, <cite>purchase_date</cite>, and <cite>product_category</cite>. Your goal is to create a data processing pipeline to analyze and transform this data.</p>
+<p>Here’s a simple example using the <cite>dataDisk</cite> package:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataDisk</span> <span class="kn">import</span> <span class="n">DataPipeline</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">,</span> <span class="n">Validator</span>
+
+<span class="c1"># Define the transformations</span>
+<span class="k">def</span> <span class="nf">double_purchase_amount</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;purchase_amount&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">categorize_high_value_purchases</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;purchase_amount&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;product_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;High Value&#39;</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Create a data pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">DataPipeline</span><span class="p">()</span>
+
+<span class="c1"># Add tasks to the pipeline</span>
+<span class="n">transformation1</span> <span class="o">=</span> <span class="n">Transformation</span><span class="p">(</span><span class="n">double_purchase_amount</span><span class="p">)</span>
+<span class="n">transformation2</span> <span class="o">=</span> <span class="n">Transformation</span><span class="p">(</span><span class="n">categorize_high_value_purchases</span><span class="p">)</span>
+<span class="n">validator</span> <span class="o">=</span> <span class="n">Validator</span><span class="p">(</span><span class="k">lambda</span> <span class="n">data</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;purchase_amount&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Simple validation for positive purchase amounts</span>
+
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">transformation1</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">transformation2</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">validator</span><span class="p">)</span>
+
+<span class="c1"># Process data through the pipeline</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;customer_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;purchase_amount&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+    <span class="s1">&#39;purchase_date&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-01-15&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;product_category&#39;</span><span class="p">:</span> <span class="s1">&#39;Electronics&#39;</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processed Data:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this scenario:</p>
+<p>The <cite>double_purchase_amount</cite> transformation doubles the <cite>purchase_amount</cite> for each customer.
+The <cite>categorize_high_value_purchases</cite> transformation updates the <cite>product_category</cite> to ‘High Value’ for purchases over $100.
+The validator ensures that the <cite>purchase_amount</cite> is positive.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to dataDisk’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to DataDisk" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David Ansa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
