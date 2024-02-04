@@ -16,6 +16,7 @@ dataDisk.egg-info/top_level.txt
 tests/__init__.py
 tests/test_dataDisk.py
 tests/test_data_pipeline.py
+tests/test_data_sources.py
 tests/test_error_handling.py
 tests/test_parallel_processor.py
 tests/test_pipeline.py

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.poetry]
 name = "dataDisk"
-version = "1.1.0"
+version = "1.2.0"
 description = "dataDisk is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution."
 authors = ["David Ansa <davitacols@gmail.com>"]
 

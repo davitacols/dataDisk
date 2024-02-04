@@ -1,9 +1,6 @@
 # data_sources.py
-
-import pyarrow
 import pandas as pd
-import sqlalchemy
-
+import sqlite3
 
 class DataSource:
 
@@ -28,23 +25,35 @@ class CSVDataSource(DataSource):
 
 class SQLDataSource(DataSource):
 
-    def __init__(self, connection_uri):
-        self.connection_uri = connection_uri
+    def __init__(self, db_filepath, table_name='results'):
+        self.db_filepath = db_filepath
+        self.table_name = table_name
 
-    def get_connection(self):
-        return sqlalchemy.create_engine(self.connection_uri) 
-
-    def read(self):
-        with self.get_connection() as conn:
-            return pd.read_sql(conn)
+    def read(self, query='SELECT * FROM '):
+        conn = sqlite3.connect(self.db_filepath)
+        try:
+            return pd.read_sql_query(query + self.table_name, conn)
+        finally:
+            conn.close()
 
     def write(self, data):
-        with self.get_connection() as conn:
-            data.to_sql('results', conn, if_exists='replace')
+        conn = sqlite3.connect(self.db_filepath)
+        try:
+            data.to_sql(self.table_name, conn, if_exists='replace', index=False)
+        finally:
+            conn.close()
 
 
 if __name__ == '__main__':
 
     # Examples 
     csv_source = CSVDataSource('data.csv')
-    sql_source = SQLDataSource('sqlite:///db.sqlite')
+    sql_source = SQLDataSource('db.sqlite')
+
+    # Reading from SQL source
+    sql_data = sql_source.read()
+    print(sql_data)
+
+    # Writing to SQL source
+    data_to_write = pd.DataFrame({'column1': [1, 2, 3], 'column2': ['a', 'b', 'c']})
+    sql_source.write(data_to_write)
