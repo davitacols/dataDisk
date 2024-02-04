@@ -1,9 +1,9 @@
-LICENCE.md
 MANIFEST.in
 README.md
 pyproject.toml
 setup.py
 dataDisk/__init__.py
+dataDisk/data_sources.py
 dataDisk/parallel_processor.py
 dataDisk/pipeline.py
 dataDisk/transformation.py
