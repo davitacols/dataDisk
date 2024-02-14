@@ -16,6 +16,7 @@ Welcome to dataDisk's documentation!
    examples
    customer_data_example
    product_categorization_example
+   data_source
    contributing
    license
 

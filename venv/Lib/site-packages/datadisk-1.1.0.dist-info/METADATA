@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: dataDisk
+Version: 1.1.0
+Summary: dataDisk is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes a ParallelProcessor for efficient parallel execution.
+Author: David Ansa
+Author-email: davitacols@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
