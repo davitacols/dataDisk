@@ -57,3 +57,16 @@
 
 ```bash
 pip install dataDisk
+
+
+### Testing
+
+**Run the included test suite to ensure the stability and correctness of the package:**
+
+```bash
+python -m unittest discover tests
+
+
+### Contributing
+
+    If you'd like to contribute to the development of dataDisk, please follow the guidelines in CONTRIBUTING.md.
