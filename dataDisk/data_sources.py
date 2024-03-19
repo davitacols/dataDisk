@@ -1,14 +1,18 @@
-# data_sources.py
 import pandas as pd
 import sqlite3
+
 
 class DataSource:
 
     def read(self):
         raise NotImplementedError
-    
+
     def write(self, data):
         raise NotImplementedError
+
+    def load_data(self, filepath):
+        """Load data from a CSV file"""
+        return pd.read_csv(filepath)
 
 
 class CSVDataSource(DataSource):
@@ -46,9 +50,13 @@ class SQLDataSource(DataSource):
 
 if __name__ == '__main__':
 
-    # Examples 
+    # Examples
     csv_source = CSVDataSource('data.csv')
     sql_source = SQLDataSource('db.sqlite')
+
+    # Reading from CSV source
+    csv_data = csv_source.read()
+    print(csv_data)
 
     # Reading from SQL source
     sql_data = sql_source.read()

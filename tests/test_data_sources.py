@@ -1,9 +1,37 @@
-import unittest
-import pandas as pd
-import sqlite3
 import os
-
+import sqlite3
+import pandas as pd
+import unittest
+import pytest
 from dataDisk.data_sources import CSVDataSource, SQLDataSource
+
+# Test data
+TEST_CSV_FILE = 'test_data.csv'
+TEST_SQL_FILE = 'test_db.sqlite'
+TEST_SQL_TABLE = 'test_table'
+
+
+@pytest.fixture(scope='module')
+def setup_csv_data():
+    # Create test CSV file
+    data = pd.DataFrame({'A': [1, 2, 3], 'B': ['a', 'b', 'c']})
+    data.to_csv(TEST_CSV_FILE, index=False)
+    yield
+    # Clean up
+    os.remove(TEST_CSV_FILE)
+
+
+@pytest.fixture(scope='module')
+def setup_sql_data():
+    # Create test SQL database and table
+    conn = sqlite3.connect(TEST_SQL_FILE)
+    data = pd.DataFrame({'A': [4, 5, 6], 'B': ['d', 'e', 'f']})
+    data.to_sql(TEST_SQL_TABLE, conn, if_exists='replace', index=False)
+    conn.close()
+    yield
+    # Clean up
+    os.remove(TEST_SQL_FILE)
+
 
 class TestDataSources(unittest.TestCase):
 
@@ -55,5 +83,10 @@ class TestDataSources(unittest.TestCase):
         # Assert updated data equality
         pd.testing.assert_frame_equal(new_data, updated_data_out)
 
+
 if __name__ == '__main__':
+    # Run unittest
     unittest.main()
+
+    # Run pytest
+    pytest.main([__file__])
