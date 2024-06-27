@@ -1,10 +1,14 @@
+# dataDisk/transformations.py
+
 import logging
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import (
     StandardScaler, Normalizer, OneHotEncoder,
-    RobustScaler, PolynomialFeatures, LabelEncoder)
+    RobustScaler, PolynomialFeatures, LabelEncoder
+)
 from sklearn.impute import SimpleImputer
+import sqlite3
 
 
 class Transformation:
@@ -49,35 +53,32 @@ class Transformation:
     def normalize(data):
         logging.info("Applying transformation: normalize")
         numeric_columns = data.select_dtypes(include=['float64', 'int64']).columns
-        
+
         logging.info(f"Numeric columns to normalize: {numeric_columns}")
-        
+
         # Normalize numeric data
         scaler = StandardScaler()
         data[numeric_columns] = scaler.fit_transform(data[numeric_columns])
-        
+
         logging.info("Data after normalization:")
         logging.info(data.head())
         return data
 
-
-    
     @staticmethod
     def label_encode(data):
         logging.info("Applying transformation: label_encode")
         categorical_columns = data.select_dtypes(include=['object']).columns
-        
+
         logging.info(f"Categorical columns to encode: {categorical_columns}")
-        
+
         # Encode categorical data
         label_encoder = LabelEncoder()
         for col in categorical_columns:
             data[col] = label_encoder.fit_transform(data[col])
-        
+
         logging.info("Data after label encoding:")
         logging.info(data.head())
         return data
-
 
     @staticmethod
     def onehot_encode(data):
@@ -104,32 +105,32 @@ class Transformation:
         logging.info("Applying transformation: data_cleaning")
         logging.info("Data before cleaning:")
         logging.info(data.head())
-        
+
         # Assuming the first four columns are numeric and the last one is categorical
         numeric_data = data.iloc[:, :-1]
         categorical_data = data.iloc[:, -1]
-        
+
         numeric_columns = numeric_data.columns
         categorical_columns = [categorical_data.name]
 
         logging.info(f"Numeric data columns: {numeric_columns}")
         logging.info(f"Categorical data columns: {categorical_columns}")
-        
+
         # Fill missing values for numeric data
         numeric_data = numeric_data.fillna(numeric_data.mean())
-        
+
         # Standardize numeric data
         scaler = StandardScaler()
         numeric_data = pd.DataFrame(scaler.fit_transform(numeric_data), columns=numeric_columns)
-        
+
         # Encode categorical data
         label_encoder = LabelEncoder()
         categorical_data = label_encoder.fit_transform(categorical_data)
         categorical_data = pd.DataFrame(categorical_data, columns=categorical_columns)
-        
+
         # Combine cleaned numeric and categorical data
         cleaned_data = pd.concat([numeric_data, categorical_data], axis=1)
-        
+
         logging.info("Data after cleaning:")
         logging.info(cleaned_data.head())
         return cleaned_data
