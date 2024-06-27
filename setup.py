@@ -6,7 +6,6 @@ setup(
     url='https://github.com/davitacols/dataDisk',
     packages=find_packages(),
     install_requires=[
-        'concurrent.futures',
     ],
     extras_require={
         'data_processing': ['numpy', 'pandas'],

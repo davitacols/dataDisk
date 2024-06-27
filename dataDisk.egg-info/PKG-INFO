@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dataDisk
-Version: 1.1.0
+Version: 1.2.0
 Home-page: https://github.com/davitacols/dataDisk
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
@@ -10,7 +10,7 @@ Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Requires-Python: >=3.6
-Requires-Dist: concurrent.futures
+License-File: License.md
 Provides-Extra: data-processing
 Requires-Dist: numpy; extra == "data-processing"
 Requires-Dist: pandas; extra == "data-processing"

@@ -1,0 +1,16 @@
+customer_id,purchase_amount,purchase_date,product_category
+1,75.99,2022-01-15,Electronics
+2,150.25,2022-02-01,Clothing
+3,,2022-03-15,Furniture
+4,199.99,2022-04-01,Furniture
+5,50.0,2022-05-01,Electronics
+6,89.95,2022-06-15,Books
+7,125.0,,Sports
+8,300.0,2022-07-01,High Value
+9,75.99,2022-08-15,Electronics
+10,150.25,2022-09-01,Clothing
+11,75.99,2022-01-15,Electronics
+12,60.0,2022-10-01,Beauty
+13,,2022-11-15,Furniture
+14,99.99,2022-12-01,Toys
+15,175.0,2022-07-01,High Value
