@@ -4,6 +4,7 @@ README.md
 pyproject.toml
 setup.py
 dataDisk/__init__.py
+dataDisk/data_sinks.py
 dataDisk/data_sources.py
 dataDisk/parallel_processor.py
 dataDisk/pipeline.py
@@ -17,6 +18,7 @@ dataDisk.egg-info/top_level.txt
 tests/__init__.py
 tests/test_dataDisk.py
 tests/test_data_pipeline.py
+tests/test_data_sinks.py
 tests/test_data_sources.py
 tests/test_error_handling.py
 tests/test_parallel_processor.py

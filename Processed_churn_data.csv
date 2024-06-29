@@ -1,0 +1,6 @@
+customerID ,gender ,SeniorCitizen ,Partner ,Dependents ,tenure ,PhoneService ,MultipleLines    ,InternetService ,OnlineSecurity ,OnlineBackup ,DeviceProtection ,TechSupport ,StreamingTV ,StreamingMovies ,Contract       ,PaperlessBilling ,PaymentMethod             ,MonthlyCharges ,TotalCharges ,Churn
+2,0,0.0,1,0,-0.8376807371039662,0,1,0,0,1,0,0,0,0,0,1,1,-1.5114070858052586,-0.8924334456861991,0
+1,1,0.0,0,0,0.911905612543558,1,0,0,1,0,1,0,0,0,0,1,2,0.4502371682810686,1.2514104271392181,0
+0,1,0.0,0,0,-0.784662968932829,1,0,0,1,1,0,1,0,0,0,1,2,0.22584243810883178,-0.8021675487474041,1
+3,1,0.0,0,0,1.495101062426066,0,1,0,0,1,0,0,1,0,1,0,0,-0.6102088952748246,1.1952103955202364,0
+4,0,0.0,0,0,-0.784662968932829,1,0,0,0,0,0,0,0,0,0,1,1,1.445536374690183,-0.7520198282258513,1

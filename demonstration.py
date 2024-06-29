@@ -1,54 +1,79 @@
+import logging
 import pandas as pd
 from dataDisk.transformation import Transformation
 
-# Sample data
-data = pd.DataFrame({
-    'A': [1, 2, 3, 4, None],
-    'B': [5, 6, 7, None, 9],
-    'C': ['X', 'Y', 'X', 'Z', 'Z'],
-    'D': [10, 11, None, 13, 14],
-    'E': [10, 11, None, 13, 14]
-})
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
-# Data cleaning
-cleaner = Transformation(Transformation.data_cleaning)
-cleaned_data = cleaner.execute(data)
-print("Cleaned Data:")
-print(cleaned_data)
-print()
+# Create a sample dataset
+data = {
+    'feature1': [1, 2, 3, 4, 5],
+    'feature2': [6, 7, 8, 9, 10],
+    'category': ['A', 'B', 'A', 'B', 'A'],
+    'feature3': [None, 2, None, 4, 5]
+}
+df = pd.DataFrame(data)
 
-# Impute missing values
-imputer = Transformation(Transformation.impute_missing)
-imputed_data = imputer.execute(data)
-print("Imputed Data:")
-print(imputed_data)
-print()
+# Print the original data
+logging.info("Original Data:")
+logging.info(df.head())
 
-# Log transformation
-log_transformer = Transformation(Transformation.log_transform)
-log_transformed_data = log_transformer.execute(data['A'].values)
-print("Log Transformed Data:")
-print(log_transformed_data)
-print()
+# Test standardize transformation
+logging.info("Testing standardize transformation")
+df_standardized = Transformation.standardize(df.copy())
+logging.info(df_standardized.head())
 
-# Binning
-binner = Transformation(Transformation.binning)
-binned_data = binner.execute(data['B'].values, num_bins=3)
-print("Binned Data:")
-print(binned_data)
-print()
+# Test normalize transformation
+logging.info("Testing normalize transformation")
+df_normalized = Transformation.normalize(df.copy())
+logging.info(df_normalized.head())
 
-# Interaction terms
-interaction_transformer = Transformation(Transformation.interaction_terms)
-interaction_data = interaction_transformer.execute(data[['A', 'B']].values)
-print("Interaction Data:")
-print(interaction_data)
-print()
+# Test label_encode transformation
+logging.info("Testing label_encode transformation")
+df_label_encoded = Transformation.label_encode(df.copy())
+logging.info(df_label_encoded.head())
 
-# Polynomial features
-poly_transformer = Transformation(Transformation.polynomial_features)
-poly_features_data = poly_transformer.execute(
-    data[['A', 'B']].values, degree=2)
-print("Polynomial Features Data:")
-print(poly_features_data)
-print()
+# Test onehot_encode transformation
+logging.info("Testing onehot_encode transformation")
+df_onehot_encoded = Transformation.onehot_encode(df.copy())
+logging.info(df_onehot_encoded.head())
+
+# Test data_cleaning transformation
+logging.info("Testing data_cleaning transformation")
+df_cleaned = Transformation.data_cleaning(df.copy())
+logging.info(df_cleaned.head())
+
+# Test log_transform transformation
+logging.info("Testing log_transform transformation")
+df_log_transformed = df.copy()
+df_log_transformed['feature1'] = Transformation.log_transform(df_log_transformed['feature1'])
+logging.info(df_log_transformed.head())
+
+# Test sqrt_transform transformation
+logging.info("Testing sqrt_transform transformation")
+df_sqrt_transformed = df.copy()
+df_sqrt_transformed['feature1'] = Transformation.sqrt_transform(df_sqrt_transformed['feature1'])
+logging.info(df_sqrt_transformed.head())
+
+# Test robust_scale transformation
+logging.info("Testing robust_scale transformation")
+df_robust_scaled = Transformation.robust_scale(df.copy())
+logging.info(df_robust_scaled.head())
+
+# Test binning transformation
+logging.info("Testing binning transformation")
+df_binned = df.copy()
+df_binned['feature1'] = Transformation.binning(df_binned['feature1'], num_bins=3)
+logging.info(df_binned.head())
+
+# Test interaction_terms transformation
+logging.info("Testing interaction_terms transformation")
+df_interaction_terms = Transformation.interaction_terms(df[['feature1', 'feature2']].copy())
+df_interaction_terms = pd.DataFrame(df_interaction_terms, columns=['feature1', 'feature2', 'interaction'])
+logging.info(df_interaction_terms.head())
+
+# Test polynomial_features transformation
+logging.info("Testing polynomial_features transformation")
+df_polynomial_features = Transformation.polynomial_features(df[['feature1', 'feature2']].copy(), degree=2)
+df_polynomial_features = pd.DataFrame(df_polynomial_features, columns=['feature1', 'feature2', 'feature1^2', 'feature1*feature2', 'feature2^2'])
+logging.info(df_polynomial_features.head())

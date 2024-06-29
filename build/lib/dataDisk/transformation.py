@@ -105,56 +105,29 @@ class Transformation:
         logging.info("Applying transformation: data_cleaning")
         logging.info("Data before cleaning:")
         logging.info(data.head())
-
-        # Assuming the first four columns are numeric and the last one is categorical
-        numeric_data = data.iloc[:, :-1]
-        categorical_data = data.iloc[:, -1]
-
-        numeric_columns = numeric_data.columns
-        categorical_columns = [categorical_data.name]
-
-        logging.info(f"Numeric data columns: {numeric_columns}")
-        logging.info(f"Categorical data columns: {categorical_columns}")
-
+        
+        # Convert columns to appropriate types if necessary
+        numeric_columns = data.select_dtypes(include=['float64', 'int64']).columns
+        data[numeric_columns] = data[numeric_columns].apply(pd.to_numeric, errors='coerce')
+        
         # Fill missing values for numeric data
-        numeric_data = numeric_data.fillna(numeric_data.mean())
-
+        data[numeric_columns] = data[numeric_columns].fillna(data[numeric_columns].mean())
+        
         # Standardize numeric data
         scaler = StandardScaler()
-        numeric_data = pd.DataFrame(scaler.fit_transform(numeric_data), columns=numeric_columns)
-
+        data[numeric_columns] = scaler.fit_transform(data[numeric_columns])
+        
         # Encode categorical data
         label_encoder = LabelEncoder()
-        categorical_data = label_encoder.fit_transform(categorical_data)
-        categorical_data = pd.DataFrame(categorical_data, columns=categorical_columns)
-
-        # Combine cleaned numeric and categorical data
-        cleaned_data = pd.concat([numeric_data, categorical_data], axis=1)
-
+        categorical_columns = data.select_dtypes(include=['object']).columns
+        for col in categorical_columns:
+            data[col] = label_encoder.fit_transform(data[col])
+        
         logging.info("Data after cleaning:")
-        logging.info(cleaned_data.head())
-        return cleaned_data
-
-    @staticmethod
-    def impute_missing(data):
-        """
-        Impute missing values in numerical and non-numerical columns separately.
-
-        Parameters:
-        - data (DataFrame): Input data with missing values.
-
-        Returns:
-        - Data with missing values imputed.
-        """
-        numeric_cols = data.select_dtypes(include=[np.number]).columns
-        numeric_imputer = SimpleImputer(strategy='median')
-        data[numeric_cols] = numeric_imputer.fit_transform(data[numeric_cols])
-
-        non_numeric_cols = data.select_dtypes(exclude=[np.number]).columns
-        non_numeric_imputer = SimpleImputer(strategy='most_frequent')
-        data[non_numeric_cols] = non_numeric_imputer.fit_transform(data[non_numeric_cols])
-
+        logging.info(data.head())
+        
         return data
+
 
     @staticmethod
     def log_transform(data):
