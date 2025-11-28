@@ -290,18 +290,31 @@ class HealthcareTransformation:
         """
         data = data.copy()
         
-        # Remove direct identifiers
-        data = HealthcareTransformation.remove_phi(data, hash_instead=False)
+        # Remove direct identifiers by dropping PHI columns entirely
+        phi_columns = [
+            'first_name', 'last_name', 'name', 'patient_name',
+            'ssn', 'social_security', 'phone', 'phone_number',
+            'email', 'address', 'street', 'city', 'zip',
+            'mrn', 'medical_record_number', 'account_number',
+            'license_number', 'vehicle_id', 'device_id',
+            'ip_address', 'url', 'biometric'
+        ]
+        
+        cols_to_drop = [col for col in data.columns if any(phi in col.lower() for phi in phi_columns)]
+        data = data.drop(columns=cols_to_drop, errors='ignore')
         
         # Generalize ages >89
         if 'age' in data.columns:
             data = HealthcareTransformation.generalize_ages(data)
+            # Drop original age column after creating age_range
+            if 'age_range' in data.columns:
+                data = data.drop('age', axis=1)
         
         # Mask dates
         data = HealthcareTransformation.mask_dates(data)
         
         # Remove geographic subdivisions smaller than state
-        geo_cols = ['city', 'county', 'zip', 'address', 'street']
+        geo_cols = ['county', 'city_code', 'postal_code']
         for col in geo_cols:
             if col in data.columns:
                 data = data.drop(col, axis=1)
