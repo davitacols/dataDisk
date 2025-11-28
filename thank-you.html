@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - dataDisk Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'League Spartan', sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: #fff;
+            padding: 80px 60px;
+            text-align: center;
+            border: 1px solid #e5e5e5;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            font-size: 48px;
+            color: #fff;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        h1 strong { font-weight: 700; }
+        p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #151515;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #000; }
+        .info-box {
+            background: #f7f7f7;
+            padding: 24px;
+            margin-top: 40px;
+            text-align: left;
+            border-left: 3px solid #151515;
+        }
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .info-box ul {
+            list-style: none;
+            font-size: 14px;
+            color: #666;
+        }
+        .info-box li {
+            padding: 6px 0;
+        }
+        .info-box li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">✓</div>
+        <h1>Thank you for your <strong>interest!</strong></h1>
+        <p>We've received your request and will send you trial access details within 24 hours.</p>
+        <p>Check your email for setup instructions, API documentation, and a link to schedule an onboarding call.</p>
+        
+        <a href="https://davitacols.github.io/dataDisk/" class="btn">Back to Home</a>
+        
+        <div class="info-box">
+            <h3>What's Next?</h3>
+            <ul>
+                <li>Check your email for trial credentials</li>
+                <li>Access API documentation and examples</li>
+                <li>Schedule a 15-minute onboarding call</li>
+                <li>Start de-identifying data in minutes</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
