@@ -527,9 +527,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-tag">HIPAA Certified Platform</div>
+                <div class="hero-tag">NEW: Custom Rules & Risk Scoring</div>
                 <h1>De-identify patient data <strong>100x faster</strong></h1>
-                <p>Enterprise HIPAA-compliant de-identification platform trusted by healthcare providers</p>
+                <p>HIPAA-compliant platform with API, custom rules, and k-anonymity risk scoring</p>
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-black">Start Free Trial</a>
                     <a href="#features" class="btn btn-outline">Learn More</a>
@@ -551,8 +551,8 @@
                     <span class="stat-label">Identifiers Removed</span>
                 </div>
                 <div>
-                    <span class="stat-number">99.9%</span>
-                    <span class="stat-label">Accuracy Rate</span>
+                    <span class="stat-number">API</span>
+                    <span class="stat-label">Batch Processing</span>
                 </div>
                 <div>
                     <span class="stat-number">5 min</span>
@@ -567,37 +567,38 @@
         <div class="container">
             <div class="section-title">Platform Capabilities</div>
             <h2 class="section-heading">Everything you need for <strong>HIPAA-compliant</strong> data de-identification</h2>
+            <p style="font-size: 16px; color: #666; margin-bottom: 60px; max-width: 700px;">Version 1.1.0 now includes REST API for automation, custom de-identification rules, and k-anonymity risk scoring.</p>
             
             <div class="features-grid">
                 <div class="feature-item">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Analytics" class="feature-image">
-                    <h3>Lightning Fast</h3>
-                    <p>Process 10,000 records in under 5 minutes. What took 10+ hours manually now takes seconds.</p>
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" alt="API" class="feature-image">
+                    <h3>REST API <span style="background: #151515; color: #fff; padding: 2px 8px; font-size: 10px; margin-left: 8px;">NEW</span></h3>
+                    <p>Automate de-identification with our REST API. Batch processing, job tracking, and webhook support.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Custom Rules" class="feature-image">
+                    <h3>Custom Rules <span style="background: #151515; color: #fff; padding: 2px 8px; font-size: 10px; margin-left: 8px;">NEW</span></h3>
+                    <p>Define your own de-identification rules. Redact, mask, hash, or remove any field with regex patterns.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Risk Scoring" class="feature-image">
+                    <h3>Risk Scoring <span style="background: #151515; color: #fff; padding: 2px 8px; font-size: 10px; margin-left: 8px;">NEW</span></h3>
+                    <p>K-anonymity calculation and re-identification risk assessment. Know your data is truly anonymous.</p>
                 </div>
                 <div class="feature-item">
                     <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="Security" class="feature-image">
-                    <h3>HIPAA Compliant</h3>
-                    <p>Automatically removes all 18 HIPAA identifiers. Safe Harbor method built-in.</p>
+                    <h3>HIPAA Safe Harbor</h3>
+                    <p>Automatically removes all 18 HIPAA identifiers. Safe Harbor method built-in and certified.</p>
                 </div>
                 <div class="feature-item">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Dashboard" class="feature-image">
-                    <h3>Audit Logging</h3>
-                    <p>Complete audit trails for every operation. Required for regulatory compliance.</p>
-                </div>
-                <div class="feature-item">
-                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80" alt="Validation" class="feature-image">
-                    <h3>Auto Validation</h3>
-                    <p>Real-time compliance checking ensures data meets HIPAA requirements.</p>
+                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80" alt="Fast" class="feature-image">
+                    <h3>Lightning Fast</h3>
+                    <p>Process 10,000 records in under 5 minutes. 47,000+ records per second throughput.</p>
                 </div>
                 <div class="feature-item">
                     <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Security Lock" class="feature-image">
-                    <h3>Enterprise Security</h3>
-                    <p>All processing happens locally. Your data never leaves your infrastructure.</p>
-                </div>
-                <div class="feature-item">
-                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" alt="API" class="feature-image">
-                    <h3>API Access</h3>
-                    <p>RESTful API, HL7 parsing, and integrations with Epic, Cerner, Allscripts.</p>
+                    <h3>Audit Logging</h3>
+                    <p>Complete audit trails for every operation. Required for HIPAA compliance and regulatory audits.</p>
                 </div>
             </div>
         </div>
@@ -632,6 +633,8 @@
                     <ul>
                         <li>10,000 records/month</li>
                         <li>HIPAA Safe Harbor</li>
+                        <li>Custom rules engine</li>
+                        <li>Risk scoring</li>
                         <li>CSV/Excel support</li>
                         <li>Audit logging</li>
                         <li>Email support</li>
@@ -646,9 +649,10 @@
                     <div class="subtitle">For health tech companies</div>
                     <ul>
                         <li>100,000 records/month</li>
-                        <li>Advanced de-identification</li>
+                        <li>REST API (100 req/hour)</li>
+                        <li>Advanced custom rules</li>
+                        <li>Risk scoring & reports</li>
                         <li>HL7 message parsing</li>
-                        <li>API access</li>
                         <li>Database connectors</li>
                         <li>Priority support</li>
                     </ul>
@@ -661,6 +665,8 @@
                     <div class="subtitle">For large organizations</div>
                     <ul>
                         <li>Unlimited records</li>
+                        <li>Unlimited API access</li>
+                        <li>Custom rule marketplace</li>
                         <li>On-premise deployment</li>
                         <li>Custom integrations</li>
                         <li>Dedicated support</li>
@@ -677,7 +683,7 @@
     <section class="cta-banner" id="contact">
         <div class="container">
             <h2>Ready to <strong>get started?</strong></h2>
-            <p>Join healthcare providers who've automated their de-identification process</p>
+            <p>Join healthcare providers using our API, custom rules, and risk scoring</p>
             <form class="email-capture" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                 <input type="email" name="email" placeholder="Enter your work email" required>
                 <button type="submit">Start Free Trial</button>
