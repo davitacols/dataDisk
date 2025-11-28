@@ -279,7 +279,7 @@ st.sidebar.markdown("### Configuration")
 # De-identification method
 method = st.sidebar.selectbox(
     "De-identification Method",
-    ["Safe Harbor (Recommended)", "Basic PHI Removal", "Custom Pipeline"]
+    ["Safe Harbor (Recommended)", "Basic PHI Removal", "Custom Rules", "Custom Pipeline"]
 )
 
 st.sidebar.markdown("---")
@@ -288,6 +288,36 @@ hash_phi = st.sidebar.checkbox("Hash PHI instead of removing", value=False)
 generalize_ages = st.sidebar.checkbox("Generalize ages (>89 grouped)", value=True)
 mask_dates = st.sidebar.checkbox("Mask dates (shift randomly)", value=True)
 create_audit_log = st.sidebar.checkbox("Generate audit log", value=True)
+
+# Custom rules section
+if method == "Custom Rules":
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### Custom Rules")
+    
+    if 'custom_rules' not in st.session_state:
+        st.session_state['custom_rules'] = []
+    
+    with st.sidebar.expander("Add Rule", expanded=False):
+        rule_column = st.text_input("Column Name")
+        rule_action = st.selectbox("Action", ["redact", "mask", "hash", "remove"])
+        rule_pattern = st.text_input("Pattern (regex, optional)")
+        
+        if st.button("Add Rule"):
+            if rule_column:
+                rule = {'column': rule_column, 'action': rule_action}
+                if rule_pattern:
+                    rule['pattern'] = rule_pattern
+                st.session_state['custom_rules'].append(rule)
+                st.success(f"Rule added: {rule_action} {rule_column}")
+    
+    if st.session_state['custom_rules']:
+        st.sidebar.markdown(f"**Active Rules: {len(st.session_state['custom_rules'])}**")
+        for i, rule in enumerate(st.session_state['custom_rules']):
+            st.sidebar.text(f"{i+1}. {rule['action']} {rule['column']}")
+        
+        if st.sidebar.button("Clear All Rules"):
+            st.session_state['custom_rules'] = []
+            st.rerun()
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Pricing")
@@ -318,6 +348,24 @@ tab1, tab2, tab3, tab4 = st.tabs(["Upload & Process", "Compliance Check", "Audit
 
 with tab1:
     st.markdown("### Upload Patient Data")
+    
+    # Show risk score if available
+    if 'risk_score' in st.session_state:
+        risk = st.session_state['risk_score']
+        risk_color = {'LOW': 'success', 'MEDIUM': 'warning', 'HIGH': 'error'}[risk['overall_risk']]
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Re-identification Risk", risk['overall_risk'])
+        with col2:
+            st.metric("K-Anonymity", risk['k_anonymity'] or 'N/A')
+        with col3:
+            st.metric("Unique Combinations", risk['unique_combinations'])
+        
+        with st.expander("View Risk Details"):
+            st.markdown(HealthcareTransformation.get_risk_summary(risk))
+        
+        st.markdown("---")
     
     col1, col2 = st.columns([2, 1])
     
@@ -389,6 +437,15 @@ with tab1:
                         if mask_dates:
                             processed_data = HealthcareTransformation.mask_dates(processed_data)
                     
+                    elif method == "Custom Rules":
+                        if st.session_state.get('custom_rules'):
+                            processed_data = HealthcareTransformation.apply_custom_rules(
+                                data, st.session_state['custom_rules']
+                            )
+                        else:
+                            st.warning("No custom rules defined. Add rules in the sidebar.")
+                            processed_data = data.copy()
+                    
                     else:  # Custom Pipeline
                         pipeline = DataPipeline()
                         pipeline.add_step(lambda df: HealthcareTransformation.create_patient_id(
@@ -403,6 +460,10 @@ with tab1:
                     
                     st.session_state['processed_data'] = processed_data
                     
+                    # Calculate re-identification risk
+                    risk_score = HealthcareTransformation.calculate_reidentification_risk(processed_data)
+                    st.session_state['risk_score'] = risk_score
+                    
                     # Generate audit log
                     if create_audit_log:
                         audit_log = HealthcareTransformation.generate_audit_log(
@@ -413,6 +474,7 @@ with tab1:
                         st.session_state['audit_log'] = audit_log
                     
                     st.success("Data de-identified successfully")
+                    st.rerun()
                     
                 except Exception as e:
                     st.error(f"Error processing data: {str(e)}")
@@ -527,12 +589,15 @@ with tab4:
     dataDisk Healthcare Edition helps healthcare providers, researchers, and health tech companies 
     de-identify patient data quickly and compliantly.
     
-    #### Key Features
+    #### Key Features (v1.1.0)
     - **HIPAA Safe Harbor Method**: Automatically removes all 18 HIPAA identifiers
+    - **Custom Rules Engine**: Define your own de-identification rules (NEW)
+    - **Risk Scoring**: K-anonymity calculation and re-identification risk assessment (NEW)
     - **Audit Logging**: Track all data access and transformations
     - **Compliance Validation**: Verify data meets HIPAA requirements
     - **Multiple Formats**: Support for CSV, Excel, and HL7 messages
     - **Fast Processing**: De-identify 10,000 records in under 5 minutes
+    - **REST API**: Batch processing for automation (Professional/Enterprise) (NEW)
     
     #### Security & Compliance
     - All processing happens locally (no data sent to cloud)
@@ -550,7 +615,8 @@ with tab4:
     
     **Professional - $699/month**
     - Up to 100,000 records/month
-    - Advanced features (HL7, API)
+    - REST API access (100 req/hour)
+    - Advanced custom rules
     - Database connectors
     - Priority support
     
@@ -572,7 +638,7 @@ with tab4:
     """)
     
     st.markdown("---")
-    st.markdown("dataDisk Healthcare Platform | Version 1.0.0")
+    st.markdown("dataDisk Healthcare Platform | Version 1.1.0 | [API Docs](API_QUICKSTART.md) | [New Features](docs/NEW_FEATURES.md)")
 
 # Footer
 st.markdown("---")

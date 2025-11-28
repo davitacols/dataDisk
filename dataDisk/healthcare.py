@@ -25,6 +25,133 @@ class HealthcareTransformation:
     }
     
     @staticmethod
+    def apply_custom_rules(data: pd.DataFrame, rules: List[Dict[str, Any]]) -> pd.DataFrame:
+        """
+        Apply custom de-identification rules defined by user.
+        
+        Args:
+            data: DataFrame to process
+            rules: List of rule dictionaries with format:
+                   [{'column': 'col_name', 'pattern': 'regex', 'action': 'redact|hash|remove'}]
+        
+        Returns:
+            Processed DataFrame
+        """
+        data = data.copy()
+        
+        for rule in rules:
+            column = rule.get('column')
+            pattern = rule.get('pattern')
+            action = rule.get('action', 'redact')
+            
+            if column not in data.columns:
+                logging.warning(f"Column {column} not found, skipping rule")
+                continue
+            
+            if action == 'remove':
+                data = data.drop(column, axis=1)
+            
+            elif action == 'redact':
+                if pattern:
+                    data[column] = data[column].astype(str).str.replace(
+                        pattern, '[REDACTED]', regex=True
+                    )
+                else:
+                    data[column] = '[REDACTED]'
+            
+            elif action == 'hash':
+                data[column] = data[column].apply(
+                    lambda x: hashlib.sha256(str(x).encode()).hexdigest()[:16]
+                    if pd.notna(x) else None
+                )
+            
+            elif action == 'mask':
+                # Mask all but last 4 characters
+                data[column] = data[column].astype(str).apply(
+                    lambda x: '*' * (len(x) - 4) + x[-4:] if len(x) > 4 else '****'
+                )
+        
+        logging.info(f"Applied {len(rules)} custom de-identification rules")
+        return data
+    
+    @staticmethod
+    def calculate_reidentification_risk(data: pd.DataFrame) -> Dict[str, Any]:
+        """
+        Calculate re-identification risk score using k-anonymity metrics.
+        
+        Args:
+            data: De-identified DataFrame
+        
+        Returns:
+            Dictionary with risk metrics
+        """
+        risk_report = {
+            'overall_risk': 'LOW',
+            'k_anonymity': None,
+            'unique_combinations': 0,
+            'quasi_identifiers': [],
+            'recommendations': []
+        }
+        
+        # Identify quasi-identifiers (columns that could be used for re-identification)
+        quasi_identifiers = []
+        for col in data.columns:
+            # Check if column has moderate cardinality (not too unique, not too generic)
+            if data[col].dtype in ['object', 'int64', 'float64']:
+                unique_ratio = data[col].nunique() / len(data)
+                if 0.01 < unique_ratio < 0.9:  # Between 1% and 90% unique
+                    quasi_identifiers.append(col)
+        
+        risk_report['quasi_identifiers'] = quasi_identifiers
+        
+        if quasi_identifiers:
+            # Calculate k-anonymity: minimum group size for quasi-identifier combinations
+            group_sizes = data.groupby(quasi_identifiers[:3]).size()  # Use top 3 QIs
+            k_anonymity = group_sizes.min() if len(group_sizes) > 0 else len(data)
+            risk_report['k_anonymity'] = int(k_anonymity)
+            
+            # Count unique combinations
+            risk_report['unique_combinations'] = len(group_sizes)
+            
+            # Assess risk level
+            if k_anonymity < 5:
+                risk_report['overall_risk'] = 'HIGH'
+                risk_report['recommendations'].append(
+                    'K-anonymity < 5: Consider further generalization or suppression'
+                )
+            elif k_anonymity < 10:
+                risk_report['overall_risk'] = 'MEDIUM'
+                risk_report['recommendations'].append(
+                    'K-anonymity < 10: Acceptable but could be improved'
+                )
+            else:
+                risk_report['overall_risk'] = 'LOW'
+                risk_report['recommendations'].append(
+                    f'K-anonymity = {k_anonymity}: Good privacy protection'
+                )
+        else:
+            risk_report['overall_risk'] = 'LOW'
+            risk_report['recommendations'].append('No quasi-identifiers detected')
+        
+        # Check for remaining PHI patterns
+        phi_found = []
+        for col in data.columns:
+            if data[col].dtype == 'object':
+                sample = data[col].dropna().astype(str).head(100)
+                for phi_type, pattern in HealthcareTransformation.PHI_PATTERNS.items():
+                    if sample.str.contains(pattern, regex=True).any():
+                        phi_found.append(f"{phi_type} in {col}")
+        
+        if phi_found:
+            risk_report['overall_risk'] = 'HIGH'
+            risk_report['recommendations'].append(
+                f'PHI patterns detected: {phi_found}'
+            )
+        
+        logging.info(f"Re-identification risk: {risk_report['overall_risk']}")
+        return risk_report
+    
+    @staticmethod
     def remove_phi(data: pd.DataFrame, 
                    columns: Optional[List[str]] = None,
                    hash_instead: bool = False) -> pd.DataFrame:
@@ -321,6 +448,31 @@ class HealthcareTransformation:
         
         logging.info("Applied HIPAA Safe Harbor de-identification")
         return data
+    
+    @staticmethod
+    def get_risk_summary(risk_report: Dict[str, Any]) -> str:
+        """
+        Generate human-readable risk summary.
+        
+        Args:
+            risk_report: Risk report from calculate_reidentification_risk()
+        
+        Returns:
+            Formatted risk summary string
+        """
+        summary = f"""Re-identification Risk Assessment
+{'='*50}
+Overall Risk Level: {risk_report['overall_risk']}
+K-Anonymity Score: {risk_report['k_anonymity']}
+Unique Combinations: {risk_report['unique_combinations']}
+Quasi-Identifiers: {', '.join(risk_report['quasi_identifiers']) if risk_report['quasi_identifiers'] else 'None'}
+
+Recommendations:
+"""
+        for i, rec in enumerate(risk_report['recommendations'], 1):
+            summary += f"{i}. {rec}\n"
+        
+        return summary
 
 
 class HL7Parser:
