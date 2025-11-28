@@ -1,0 +1,6 @@
+Name,Title,Company,Email,LinkedIn,Phone,Source,Status,Last Contact,Next Action,Notes
+John Smith,Practice Manager,ABC Medical Clinic,john@abcmedical.com,linkedin.com/in/johnsmith,555-1234,LinkedIn,New,,,Found via LinkedIn search
+Jane Doe,CTO,HealthTech Startup,jane@healthtech.io,linkedin.com/in/janedoe,,Product Hunt,New,,,Building patient data platform
+Bob Johnson,Research Coordinator,University Hospital,bob@unihospital.edu,,,Google,New,,,Published research on patient data
+Alice Williams,IT Director,Community Health Center,alice@chc.org,,,Referral,New,,,Referred by John Smith
+Charlie Brown,Founder,MedData Solutions,charlie@meddata.com,,,Twitter,New,,,Tweeted about HIPAA compliance

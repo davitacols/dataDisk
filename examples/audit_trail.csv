@@ -1,0 +1,3 @@
+timestamp,user,operation,record_count,columns_accessed,data_hash
+2025-11-28T17:03:26.924201,data_analyst_1,read,5,"patient_id,first_name,last_name,ssn,dob,phone,email,address,city,state,zip,age,diagnosis,visit_date,blood_pressure,weight_kg",a9946ef34656764d
+2025-11-28T17:03:26.957013,data_analyst_1,transform_and_export,5,"patient_id,first_name,last_name,ssn,dob,phone,email,address,city,state,zip,age,diagnosis,visit_date,blood_pressure,weight_kg,anonymous_id,age_range",6916103079afa5af

@@ -1,5 +1,9 @@
 # dataDisk
 
+[![Python package](https://github.com/davitacols/dataDisk/actions/workflows/python-package.yml/badge.svg)](https://github.com/davitacols/dataDisk/actions/workflows/python-package.yml)
+[![PyPI version](https://badge.fury.io/py/dataDisk.svg)](https://badge.fury.io/py/dataDisk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 `dataDisk` is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes features for efficient parallel execution.
 
 ## Key Features
@@ -18,6 +22,47 @@ Install the package using pip:
 pip install dataDisk
 ```
 
+For development installation with extra dependencies:
+
+```bash
+pip install -e ".[dev,excel,sql]"
+```
+
+## Quick Start
+
+```python
+from dataDisk import DataPipeline, Transformation, Validator
+from dataDisk.data_sources import CSVDataSource
+from dataDisk.data_sinks import CSVDataSink
+
+# Load data
+source = CSVDataSource('input.csv')
+data = source.load()
+
+# Create transformations
+def normalize(data):
+    return (data - data.mean()) / data.std()
+
+transformation = Transformation(normalize)
+
+# Create validator
+def check_valid(data):
+    return data.notnull().all().all()
+
+validator = Validator(check_valid)
+
+# Create pipeline
+pipeline = DataPipeline()
+pipeline.add_step(transformation)
+pipeline.add_step(validator)
+
+# Process data
+result = pipeline.run(data)
+
+# Save results
+sink = CSVDataSink('output.csv')
+sink.save(result)
+```
 
 ## Transformations
 
@@ -31,7 +76,7 @@ Transformations allow you to apply various operations to your data. Here's a bri
 
 ### Example of a custom transformation:
 
-```bash
+```python
 from dataDisk.transformation import Transformation
 
 def double(x):
@@ -40,8 +85,8 @@ def double(x):
 transformation = Transformation(double)
 ```
 
-
 ## Data Sinks
+
 Data sinks allow you to save processed data to various formats:
 
 - **CSVDataSink**: Save data to a CSV file.
@@ -49,10 +94,28 @@ Data sinks allow you to save processed data to various formats:
 - **SQLiteDataSink**: Save data to an SQLite database.
 
 ### Example of using a data sink:
-```bash
+
+```python
 from dataDisk.data_sinks import CSVDataSink
 
 csv_data_sink = CSVDataSink('output.csv')
 csv_data_sink.save(data)
+```
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Install development dependencies (`pip install -e ".[dev]"`)
+4. Set up pre-commit hooks (`pre-commit install`)
+5. Make your changes
+6. Commit your changes (`git commit -m 'Add some amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [License.md](License.md) file for details.
 

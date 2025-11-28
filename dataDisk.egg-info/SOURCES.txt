@@ -1,6 +1,7 @@
 License.md
 MANIFEST.in
 README.md
+Readme.md
 pyproject.toml
 setup.py
 dataDisk/__init__.py

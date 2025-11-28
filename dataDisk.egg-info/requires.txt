@@ -1,4 +1,14 @@
+numpy>=1.19.0
+pandas>=1.0.0
 
-[data_processing]
-numpy
-pandas
+[dev]
+pytest>=6.0.0
+flake8>=3.8.0
+black>=22.0.0
+isort>=5.0.0
+
+[excel]
+openpyxl>=3.0.0
+
+[sql]
+sqlalchemy>=1.4.0

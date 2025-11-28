@@ -1,16 +1,161 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: dataDisk
 Version: 1.2.0
+Summary: A Python package designed to simplify the creation and execution of data processing pipelines
 Home-page: https://github.com/davitacols/dataDisk
+Author: David Ansa
+Author-email: David Ansa <davitacols@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/davitacols/dataDisk
+Project-URL: Issues, https://github.com/davitacols/dataDisk/issues
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
-Requires-Python: >=3.6
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
 License-File: License.md
-Provides-Extra: data-processing
-Requires-Dist: numpy; extra == "data-processing"
-Requires-Dist: pandas; extra == "data-processing"
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: pandas>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: flake8>=3.8.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Provides-Extra: excel
+Requires-Dist: openpyxl>=3.0.0; extra == "excel"
+Provides-Extra: sql
+Requires-Dist: sqlalchemy>=1.4.0; extra == "sql"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# dataDisk
+
+[![Python package](https://github.com/davitacols/dataDisk/actions/workflows/python-package.yml/badge.svg)](https://github.com/davitacols/dataDisk/actions/workflows/python-package.yml)
+[![PyPI version](https://badge.fury.io/py/dataDisk.svg)](https://badge.fury.io/py/dataDisk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+`dataDisk` is a Python package designed to simplify the creation and execution of data processing pipelines. It provides a flexible framework for defining sequential tasks, applying transformations, and validating data. Additionally, it includes features for efficient parallel execution.
+
+## Key Features
+
+- **DataPipeline**: Define a sequence of data processing tasks in a straightforward manner.
+- **Transformation**: Apply custom transformations to your data easily.
+- **Validator**: Ensure your data meets specific conditions.
+- **ParallelProcessor**: Execute pipeline tasks in parallel for improved performance.
+- **Data Sinks**: Save processed data to various formats like CSV, Excel, and SQLite.
+
+## Installation
+
+Install the package using pip:
+
+```bash
+pip install dataDisk
+```
+
+For development installation with extra dependencies:
+
+```bash
+pip install -e ".[dev,excel,sql]"
+```
+
+## Quick Start
+
+```python
+from dataDisk import DataPipeline, Transformation, Validator
+from dataDisk.data_sources import CSVDataSource
+from dataDisk.data_sinks import CSVDataSink
+
+# Load data
+source = CSVDataSource('input.csv')
+data = source.load()
+
+# Create transformations
+def normalize(data):
+    return (data - data.mean()) / data.std()
+
+transformation = Transformation(normalize)
+
+# Create validator
+def check_valid(data):
+    return data.notnull().all().all()
+
+validator = Validator(check_valid)
+
+# Create pipeline
+pipeline = DataPipeline()
+pipeline.add_step(transformation)
+pipeline.add_step(validator)
+
+# Process data
+result = pipeline.run(data)
+
+# Save results
+sink = CSVDataSink('output.csv')
+sink.save(result)
+```
+
+## Transformations
+
+Transformations allow you to apply various operations to your data. Here's a brief overview of available transformations:
+
+- **Standardize**: Scale features to have zero mean and unit variance.
+- **Normalize**: Scale features to have zero mean and unit variance.
+- **Label Encode**: Convert categorical labels to numeric values.
+- **OneHot Encode**: Convert categorical labels to one-hot encoded vectors.
+- **Data Cleaning**: Perform data cleaning operations like filling missing values and encoding categories.
+
+### Example of a custom transformation:
+
+```python
+from dataDisk.transformation import Transformation
+
+def double(x):
+    return x * 2
+
+transformation = Transformation(double)
+```
+
+## Data Sinks
+
+Data sinks allow you to save processed data to various formats:
+
+- **CSVDataSink**: Save data to a CSV file.
+- **ExcelDataSink**: Save data to an Excel file.
+- **SQLiteDataSink**: Save data to an SQLite database.
+
+### Example of using a data sink:
+
+```python
+from dataDisk.data_sinks import CSVDataSink
+
+csv_data_sink = CSVDataSink('output.csv')
+csv_data_sink.save(data)
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Install development dependencies (`pip install -e ".[dev]"`)
+4. Set up pre-commit hooks (`pre-commit install`)
+5. Make your changes
+6. Commit your changes (`git commit -m 'Add some amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [License.md](License.md) file for details.
+
