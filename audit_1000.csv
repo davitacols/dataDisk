@@ -1,0 +1,2 @@
+timestamp,user,operation,record_count,columns_accessed,data_hash
+2025-11-28T18:03:28.118955,test_user,test_1000_records,1000,"patient_id,dob,state,diagnosis,visit_date,blood_pressure,heart_rate,temperature_f,weight_kg,height_cm,glucose_mg_dl,cholesterol_mg_dl,age_range",078c62278a7577a9

@@ -18,12 +18,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Theme selection (must be before CSS)
-if 'theme' not in st.session_state:
-    st.session_state.theme = "Light"
-
-theme = st.session_state.theme
-
 # Custom CSS
 st.markdown("""
 <style>
@@ -154,19 +148,19 @@ st.markdown("""
     
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background-color: """ + ("#151515" if theme == "Dark" else "#f7f7f7") + """;
+        background-color: #f7f7f7;
         padding: 2rem 1rem;
     }
     
     [data-testid="stSidebar"] * {
-        color: """ + ("white" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     [data-testid="stSidebar"] h1,
     [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3,
     [data-testid="stSidebar"] h4 {
-        color: white !important;
+        color: #151515 !important;
         font-weight: 600;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -183,94 +177,94 @@ st.markdown("""
     }
     
     [data-testid="stSidebar"] hr {
-        border-color: """ + ("rgba(255, 255, 255, 0.1)" if theme == "Dark" else "rgba(0, 0, 0, 0.1)") + """;
+        border-color: rgba(0, 0, 0, 0.1);
         margin: 2rem 0;
     }
     
     [data-testid="stSidebar"] .stMarkdown {
-        color: """ + ("rgba(255, 255, 255, 0.8)" if theme == "Dark" else "rgba(0, 0, 0, 0.7)") + """ !important;
+        color: rgba(0, 0, 0, 0.7) !important;
         font-size: 0.875rem;
         line-height: 1.6;
     }
     
     [data-testid="stSidebar"] strong {
-        color: """ + ("white" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
         font-weight: 600;
     }
     
     [data-testid="stSidebar"] [data-baseweb="select"] {
-        background-color: """ + ("rgba(255, 255, 255, 0.1)" if theme == "Dark" else "white") + """;
-        border: 1px solid """ + ("rgba(255, 255, 255, 0.2)" if theme == "Dark" else "#e5e5e5") + """;
+        background-color: white;
+        border: 1px solid #e5e5e5;
     }
     
     [data-testid="stSidebar"] [data-baseweb="checkbox"] {
-        border-color: """ + ("rgba(255, 255, 255, 0.3)" if theme == "Dark" else "rgba(0, 0, 0, 0.3)") + """;
+        border-color: rgba(0, 0, 0, 0.3);
     }
     
-    /* Main content theme */
+    /* Main content styling */
     .main {
-        background-color: """ + ("#151515" if theme == "Dark" else "#ffffff") + """;
+        background-color: #ffffff;
     }
     
     .main h1, .main h2, .main h3, .main h4, .main h5, .main h6 {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     .main .stMarkdown p, .main .stMarkdown li, .main .stMarkdown span, .main .stMarkdown div {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     .main label, .main .stSelectbox label, .main .stCheckbox label {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     .main .stDataFrame, .main table, .main td, .main th {
-        background-color: """ + ("#1e1e1e" if theme == "Dark" else "#ffffff") + """;
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        background-color: #ffffff;
+        color: #151515 !important;
     }
     
     [data-testid="stMetricValue"] {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     [data-testid="stMetricLabel"] {
-        color: """ + ("#999" if theme == "Dark" else "#666") + """ !important;
+        color: #666 !important;
     }
     
     .main-header {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     .subtitle {
-        color: """ + ("#999" if theme == "Dark" else "#666") + """ !important;
+        color: #666 !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        color: """ + ("#999" if theme == "Dark" else "#666") + """ !important;
+        color: #666 !important;
     }
     
     .stTabs [aria-selected="true"] {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
-        border-bottom-color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
+        border-bottom-color: #151515 !important;
     }
     
     .info-box, .success-box, .warning-box, .error-box {
-        background: """ + ("#1e1e1e" if theme == "Dark" else "#f7f7f7") + """;
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        background: #f7f7f7;
+        color: #151515 !important;
     }
     
     .info-box *, .success-box *, .warning-box *, .error-box * {
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        color: #151515 !important;
     }
     
     .main .stAlert {
-        background-color: """ + ("#1e1e1e" if theme == "Dark" else "#f7f7f7") + """;
-        color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """ !important;
+        background-color: #f7f7f7;
+        color: #151515 !important;
     }
     
     .stButton>button {
-        background-color: """ + ("#ffffff" if theme == "Dark" else "#151515") + """;
-        color: """ + ("#151515" if theme == "Dark" else "#ffffff") + """ !important;
+        background-color: #151515;
+        color: #ffffff !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -281,20 +275,6 @@ st.markdown('<p class="subtitle" style="text-align: center;">HIPAA-Compliant Pat
 
 # Sidebar
 st.sidebar.markdown("### Configuration")
-
-# Theme toggle
-theme_selection = st.sidebar.radio(
-    "Theme",
-    ["Light", "Dark"],
-    index=0 if st.session_state.theme == "Light" else 1,
-    horizontal=True
-)
-
-if theme_selection != st.session_state.theme:
-    st.session_state.theme = theme_selection
-    st.rerun()
-
-theme = st.session_state.theme
 
 # De-identification method
 method = st.sidebar.selectbox(
@@ -351,16 +331,25 @@ with tab1:
     with col2:
         st.markdown("#### Sample Data")
         if st.button("Load Sample Dataset"):
-            sample_data = pd.DataFrame({
-                'patient_id': ['P001', 'P002', 'P003'],
-                'first_name': ['John', 'Jane', 'Bob'],
-                'last_name': ['Doe', 'Smith', 'Johnson'],
-                'ssn': ['123-45-6789', '987-65-4321', '555-12-3456'],
-                'age': [43, 48, 95],
-                'diagnosis': ['Diabetes', 'Hypertension', 'Asthma']
-            })
-            st.session_state['data'] = sample_data
-            st.success("Sample data loaded successfully")
+            try:
+                sample_data = pd.read_csv('mock_patient_data_1000.csv')
+                st.session_state['data'] = sample_data
+                st.success(f"Sample data loaded successfully - {len(sample_data)} records")
+            except FileNotFoundError:
+                # Fallback to small sample if file not found
+                sample_data = pd.DataFrame({
+                    'patient_id': ['P001', 'P002', 'P003'],
+                    'first_name': ['John', 'Jane', 'Bob'],
+                    'last_name': ['Doe', 'Smith', 'Johnson'],
+                    'ssn': ['123-45-6789', '987-65-4321', '555-12-3456'],
+                    'dob': ['1980-05-15', '1975-08-22', '1990-12-01'],
+                    'age': [43, 48, 95],
+                    'phone': ['555-123-4567', '555-987-6543', '555-555-5555'],
+                    'email': ['john@email.com', 'jane@email.com', 'bob@email.com'],
+                    'diagnosis': ['Diabetes', 'Hypertension', 'Asthma']
+                })
+                st.session_state['data'] = sample_data
+                st.success("Sample data loaded successfully")
     
     if uploaded_file is not None:
         try:
